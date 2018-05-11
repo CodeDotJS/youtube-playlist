@@ -1,10 +1,10 @@
 <p align="center">
-<img src="media/logo.png" width="340">
+<img src="https://raw.githubusercontent.com/CodeDotJS/youtube-playlist/master/media/logo.png" width="340">
 <br>
   <a href="https://travis-ci.org/CodeDotJS/youtube-playlist">
   <img src="https://travis-ci.org/CodeDotJS/youtube-playlist.svg?branch=master">
   </a>
-  <img src="media/mid.png" width="50px;">
+  <img src="https://raw.githubusercontent.com/CodeDotJS/youtube-playlist/master/media/mid.png" width="50px;">
   <img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg">
   <br>
   <p align="center">Extract links, ids, and names from a youtube playlist</p>
