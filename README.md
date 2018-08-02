@@ -94,6 +94,16 @@ __Type of__
 
 - __`opts`__ `:` __`string`__
 
+
+#### NOTE
+
+- This `api` already supports `url-redirection`, so you are free to use the shortened url.
+
+- For data extraction, you can either choose -
+	- __`playlist url`__
+	- __`url of the content from playlist`__ __[`#1`](https://github.com/CodeDotJS/youtube-playlist/issues/1)__
+
+
 ## Related
 
 - __[`Pufetch`](https://github.com/CodeDotJS/pufetch)__ `:` `The best youtube playlist url scrapper and exporter!`
