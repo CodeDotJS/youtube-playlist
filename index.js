@@ -11,8 +11,12 @@ const tag = {
 	id: 'data-video-id'
 };
 
+const splitCurrentPlay = str => {
+	return str.indexOf('watch') === -1 ? str : `https://www.youtube.com/playlist?list=${str.split('&list=')[1].split('&t=')[0]}`;
+};
+
 module.exports = (data, opt) => {
-	return got(data).then(res => {
+	return got(splitCurrentPlay(data)).then(res => {
 		const $ = cheerio.load(res.body);
 		const thumb = $('tr');
 		const arr = {playlist: []};
