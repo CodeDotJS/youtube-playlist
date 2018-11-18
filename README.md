@@ -77,6 +77,23 @@ ytlist(url, 'id').then(res => {
 })
 ```
 
+- __`multiple details`__
+
+```js
+const ytlist = require('youtube-playlist');
+
+const url = 'https://www.youtube.com/playlist?list=PLWKjhJtqVAbnZtkAI3BqcYxKnfWn_C704';
+
+ytlist(url, ['name', 'url']).then(res => {
+  console.log(res);
+  /* Object
+  { data:
+   { playlist:
+      [
+        {"name":"Singleton Design Pattern - Beau teaches JavaScript","id":"bgU7FeiWKzc"},{"name":"Observer Design Pattern - Beau teaches JavaScript","id":"3PUVr8jFMGg"},{"name":"Module Design Pattern - Beau teaches JavaScript","id":"3pXVHRT-amw"},{"name":"Mediator Design Pattern - Beau teaches JavaScript","id":"KOVc5o5kURE"}]} }
+   */
+});
+
 ## API
 
 ```js
