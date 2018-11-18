@@ -4,29 +4,56 @@ import m from './';
 const url = 'https://www.youtube.com/playlist?list=PLWKjhJtqVAbnZtkAI3BqcYxKnfWn_C704';
 const base = 'https://youtube.com/watch?v=';
 
+const mock = {
+	ids: [
+		'bgU7FeiWKzc',
+		'3PUVr8jFMGg',
+		'3pXVHRT-amw',
+		'KOVc5o5kURE'
+	],
+	names: [
+		`Singleton Design Pattern - Beau teaches JavaScript`,
+		`Observer Design Pattern - Beau teaches JavaScript`,
+		`Module Design Pattern - Beau teaches JavaScript`,
+		`Mediator Design Pattern - Beau teaches JavaScript`
+	]
+};
+
 test('getId', async t => {
 	const ids = await m(url, 'id');
-
-	t.is(ids.data.playlist[0], 'bgU7FeiWKzc');
-	t.is(ids.data.playlist[1], '3PUVr8jFMGg');
-	t.is(ids.data.playlist[2], '3pXVHRT-amw');
-	t.is(ids.data.playlist[3], 'KOVc5o5kURE');
+	ids.data.playlist.forEach((id, i) => {
+		t.is(id, mock.ids[i]);
+	});
 });
 
 test('getUrl', async t => {
 	const urls = await m(url, 'url');
-
-	t.is(urls.data.playlist[0], `${base}bgU7FeiWKzc`);
-	t.is(urls.data.playlist[1], `${base}3PUVr8jFMGg`);
-	t.is(urls.data.playlist[2], `${base}3pXVHRT-amw`);
-	t.is(urls.data.playlist[3], `${base}KOVc5o5kURE`);
+	urls.data.playlist.forEach((uurl, i) => {
+		t.is(uurl, `${base}${mock.ids[i]}`);
+	});
 });
 
 test('getNames', async t => {
 	const names = await m(url, 'name');
+	names.data.playlist.forEach((name, i) => {
+		t.is(name, mock.names[i]);
+	});
+});
 
-	t.is(names.data.playlist[0], `Singleton Design Pattern - Beau teaches JavaScript`);
-	t.is(names.data.playlist[1], `Observer Design Pattern - Beau teaches JavaScript`);
-	t.is(names.data.playlist[2], `Module Design Pattern - Beau teaches JavaScript`);
-	t.is(names.data.playlist[3], `Mediator Design Pattern - Beau teaches JavaScript`);
+test('getAllDetails', async t => {
+	const videos = await m(url, ['name', 'id', 'url']);
+	videos.data.playlist.forEach((video, i) => {
+		t.is(video.name, mock.names[i]);
+		t.is(video.id, mock.ids[i]);
+		t.is(video.url, `${base}${mock.ids[i]}`);
+	});
+});
+
+test('getAllDetailsByDefault', async t => {
+	const videos = await m(url);
+	videos.data.playlist.forEach((video, i) => {
+		t.is(video.name, mock.names[i]);
+		t.is(video.id, mock.ids[i]);
+		t.is(video.url, `${base}${mock.ids[i]}`);
+	});
 });

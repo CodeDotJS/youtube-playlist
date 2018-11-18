@@ -20,25 +20,23 @@ module.exports = (data, opt) => {
 		const $ = cheerio.load(res.body);
 		const thumb = $('tr');
 		const arr = {playlist: []};
+		if (!opt) {
+			opt = Object.keys(tag);
+		}
 
-		const def = (cuts, marks) => {
-			return cuts === 'url' ? arr.playlist.push(`${url}${marks}`) : arr.playlist.push(marks);
-		};
+		const prefixUrl = (holder, marks) => holder === 'url' ? `${url}${marks}` : marks;
 
 		const multipleDetails = Array.isArray(opt);
-
-		for (let i = 0; i < thumb.length; i++) {
-			let data;
+		arr.playlist = thumb.map((index, el) => {
 			if (multipleDetails) {
-				data = {};
-				opt.forEach(holder => {
-					data[holder] = thumb.eq(i).attr(tag[holder]);
-				});
-			} else {
-				data = thumb.eq(i).attr(tag[opt]);
+				return opt.reduce((prev, holder) => {
+					prev[holder] = prefixUrl(holder, el.attribs[tag[holder]]);
+					return prev;
+				}, {});
 			}
-			def(opt, data);
-		}
+			return prefixUrl(opt, el.attribs[tag[opt]]);
+		}).get();
+
 		return {data: arr};
 	});
 };
