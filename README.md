@@ -80,19 +80,24 @@ ytlist(url, 'id').then(res => {
 - __`multiple details`__
 
 ```js
-const ytlist = require('youtube-playlist');
-
-const url = 'https://www.youtube.com/playlist?list=PLWKjhJtqVAbnZtkAI3BqcYxKnfWn_C704';
-
-ytlist(url, ['name', 'url']).then(res => {
-  console.log(res);
-  /* Object
-  { data:
-   { playlist:
-      [
-        {"name":"Singleton Design Pattern - Beau teaches JavaScript","id":"bgU7FeiWKzc"},{"name":"Observer Design Pattern - Beau teaches JavaScript","id":"3PUVr8jFMGg"},{"name":"Module Design Pattern - Beau teaches JavaScript","id":"3pXVHRT-amw"},{"name":"Mediator Design Pattern - Beau teaches JavaScript","id":"KOVc5o5kURE"}]} }
+ytlist(url, ['id', 'name', 'url']).then(res => {
+  console.log(res.data);
+  /* Array
+  [ { id: 'bgU7FeiWKzc',
+    name: 'Singleton Design Pattern - Beau teaches JavaScript',
+    url: 'https://youtube.com/watch?v=bgU7FeiWKzc' },
+  { id: '3PUVr8jFMGg',
+    name: 'Observer Design Pattern - Beau teaches JavaScript',
+    url: 'https://youtube.com/watch?v=3PUVr8jFMGg' },
+  { id: '3pXVHRT-amw',
+    name: 'Module Design Pattern - Beau teaches JavaScript',
+    url: 'https://youtube.com/watch?v=3pXVHRT-amw' },
+  { id: 'KOVc5o5kURE',
+    name: 'Mediator Design Pattern - Beau teaches JavaScript',
+    url: 'https://youtube.com/watch?v=KOVc5o5kURE' } ]
    */
 });
+```
 
 ## API
 
@@ -105,11 +110,13 @@ ytlist(url, opts)
 - __`url`__ `:` `returns only urls of all the videos present in a playlist`
 - __`name`__ `:` `return only name of the videos present in a playlist`
 
+- Passing `opts` as an array ~ __`['id', 'name', 'url']`__ returns all the details.
+
 __Type of__
 
 - __`url`__ `:` __`string`__
 
-- __`opts`__ `:` __`string`__
+- __`opts`__ `:` __`string`__ or __`array`__
 
 
 #### NOTE
