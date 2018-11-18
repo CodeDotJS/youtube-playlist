@@ -20,6 +20,7 @@ module.exports = (data, opt) => {
 		const $ = cheerio.load(res.body);
 		const thumb = $('tr');
 		const arr = {playlist: []};
+
 		if (!opt) {
 			opt = Object.keys(tag);
 		}
@@ -27,6 +28,7 @@ module.exports = (data, opt) => {
 		const prefixUrl = (holder, marks) => holder === 'url' ? `${url}${marks}` : marks;
 
 		const multipleDetails = Array.isArray(opt);
+
 		arr.playlist = thumb.map((index, el) => {
 			if (multipleDetails) {
 				return opt.reduce((prev, holder) => {
