@@ -13,3 +13,4 @@ const func = (data, opt) => {
 func(url, 'id');
 func(url, 'name');
 func(url, 'url');
+func(url, ['id', 'name', 'url']);
