@@ -80,6 +80,13 @@ ytlist(url, 'id').then(res => {
 - __`multiple details`__
 
 ```js
+ytlist(url).then(res => {
+  console.log(res.data);
+  // = [{}]
+});
+
+// or
+
 ytlist(url, ['id', 'name', 'url']).then(res => {
   console.log(res.data);
   /* Array
@@ -110,7 +117,7 @@ ytlist(url, opts)
 - __`url`__ `:` `returns only urls of all the videos present in a playlist`
 - __`name`__ `:` `return only name of the videos present in a playlist`
 
-- Passing `opts` as an array ~ __`['id', 'name', 'url']`__ returns all the details.
+- Passing `opts` either as __`url`__ or an array of options __`['id', 'name', 'url']`__ returns all the details.
 
 __Type of__
 
