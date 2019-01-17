@@ -15,6 +15,10 @@ const splitCurrentPlay = str => {
 	return str.indexOf('watch') === -1 ? str : `https://www.youtube.com/playlist?list=${str.split('&list=')[1].split('&t=')[0]}`;
 };
 
+const isPrivateVideo = tr => {
+	return !tr.find('.pl-video-owner').length;
+};
+
 module.exports = (data, opt) => {
 	return got(splitCurrentPlay(data)).then(res => {
 		const $ = cheerio.load(res.body);
@@ -34,7 +38,9 @@ module.exports = (data, opt) => {
 				return opt.reduce((prev, holder) => {
 					prev[holder] = prefixUrl(holder, el.attribs[tag[holder]]);
 					return prev;
-				}, {});
+				}, {
+					isPrivate: isPrivateVideo()
+				});
 			}
 			return prefixUrl(opt, el.attribs[tag[opt]]);
 		}).get();
