@@ -59,7 +59,7 @@ test('getAllDetailsByDefault', async t => {
 	});
 });
 
-test('return isEmpty', async t => {
+test('return isPrivate', async t => {
 	const videos = await m(urlWithPrivateVideos);
-	t.is(videos.data.playlist.map(video => video.isPrivate), [true, false, true]);
+	t.deepEqual(videos.data.playlist.map(video => video.isPrivate), [true, false, true]);
 });

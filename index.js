@@ -16,7 +16,8 @@ const splitCurrentPlay = str => {
 };
 
 const isPrivateVideo = tr => {
-	return !tr.find('.pl-video-owner').length;
+	const isOwnerFieldExist = Boolean(cheerio('.pl-video-owner', tr).length);
+	return !isOwnerFieldExist;
 };
 
 module.exports = (data, opt) => {
@@ -39,7 +40,7 @@ module.exports = (data, opt) => {
 					prev[holder] = prefixUrl(holder, el.attribs[tag[holder]]);
 					return prev;
 				}, {
-					isPrivate: isPrivateVideo()
+					isPrivate: isPrivateVideo(el)
 				});
 			}
 			return prefixUrl(opt, el.attribs[tag[opt]]);
