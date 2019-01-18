@@ -2,6 +2,7 @@ import test from 'ava';
 import m from './';
 
 const url = 'https://www.youtube.com/playlist?list=PLWKjhJtqVAbnZtkAI3BqcYxKnfWn_C704';
+const urlWithPrivateVideos = 'https://www.youtube.com/playlist?list=PLtKALR6MChByCrbKkdxWwPOOMqM2ECPDv';
 const base = 'https://youtube.com/watch?v=';
 
 const mock = {
@@ -56,4 +57,9 @@ test('getAllDetailsByDefault', async t => {
 		t.is(video.id, mock.ids[i]);
 		t.is(video.url, `${base}${mock.ids[i]}`);
 	});
+});
+
+test('return isPrivate', async t => {
+	const videos = await m(urlWithPrivateVideos);
+	t.deepEqual(videos.data.playlist.map(video => video.isPrivate), [true, false, true]);
 });

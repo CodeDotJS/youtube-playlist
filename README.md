@@ -92,18 +92,24 @@ ytlist(url, ['id', 'name', 'url']).then(res => {
   /* Array
   [ { id: 'bgU7FeiWKzc',
     name: 'Singleton Design Pattern - Beau teaches JavaScript',
-    url: 'https://youtube.com/watch?v=bgU7FeiWKzc' },
+    url: 'https://youtube.com/watch?v=bgU7FeiWKzc',
+    isPrivate: false },
   { id: '3PUVr8jFMGg',
     name: 'Observer Design Pattern - Beau teaches JavaScript',
-    url: 'https://youtube.com/watch?v=3PUVr8jFMGg' },
+    url: 'https://youtube.com/watch?v=3PUVr8jFMGg',
+    isPrivate: false },
   { id: '3pXVHRT-amw',
     name: 'Module Design Pattern - Beau teaches JavaScript',
-    url: 'https://youtube.com/watch?v=3pXVHRT-amw' },
+    url: 'https://youtube.com/watch?v=3pXVHRT-amw',
+    isPrivate: false },
   { id: 'KOVc5o5kURE',
     name: 'Mediator Design Pattern - Beau teaches JavaScript',
-    url: 'https://youtube.com/watch?v=KOVc5o5kURE' } ]
+    url: 'https://youtube.com/watch?v=KOVc5o5kURE',
+    isPrivate: false } ]
    */
 });
+
+**Notice** in `multiple details` - another prop will be added. `isPrivate` will be true when the video is private (for not loggedin user)
 ```
 
 ## API
