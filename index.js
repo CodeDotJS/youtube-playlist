@@ -24,7 +24,10 @@ module.exports = (data, opt) => {
 	return got(splitCurrentPlay(data)).then(res => {
 		const $ = cheerio.load(res.body);
 		const thumb = $('tr');
-		const arr = {playlist: []};
+		const arr = {
+			name: $('.pl-header-title').text().trim(),
+			playlist: []
+		};
 
 		if (!opt) {
 			opt = Object.keys(tag);
