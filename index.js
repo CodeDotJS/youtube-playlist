@@ -29,7 +29,7 @@ module.exports = (data, opt) => {
 
 		const prefixUrl = (holder, marks) => holder === 'url' ? `${url}${marks}` : marks;
 		const getDuration = el => {
-			const raw = el.children[el.children.length - 1].children[0].children[1].children[0].children[0].data.split(':');
+			const raw = $(el).find('.timestamp').text().split(':');
 			return (parseInt(raw[0], 10) * 60) + parseInt(raw[1], 10);
 		};
 
