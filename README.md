@@ -7,7 +7,7 @@
   <img src="https://raw.githubusercontent.com/CodeDotJS/youtube-playlist/master/media/mid.png" width="50px;">
   <img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg">
   <br>
-  <p align="center">Extract links, ids, and names from a youtube playlist</p>
+  <p align="center">Extract links, ids, durations and names from a youtube playlist</p>
   <br>
 </p>
 
@@ -77,6 +77,15 @@ ytlist(url, 'id').then(res => {
 })
 ```
 
+- __`durations`__
+
+```js
+ytlist(url, 'duration').then(res => {
+  console.log(res);
+  // => { data: { playlist: [ 291, 237, 164, 309 ] } }
+})
+```
+
 - __`multiple details`__
 
 ```js
@@ -92,16 +101,20 @@ ytlist(url, ['id', 'name', 'url']).then(res => {
   /* Array
   [ { id: 'bgU7FeiWKzc',
     name: 'Singleton Design Pattern - Beau teaches JavaScript',
-    url: 'https://youtube.com/watch?v=bgU7FeiWKzc' },
+    url: 'https://youtube.com/watch?v=bgU7FeiWKzc',
+    duration: 291 },
   { id: '3PUVr8jFMGg',
     name: 'Observer Design Pattern - Beau teaches JavaScript',
-    url: 'https://youtube.com/watch?v=3PUVr8jFMGg' },
+    url: 'https://youtube.com/watch?v=3PUVr8jFMGg',
+    duration: 237 },
   { id: '3pXVHRT-amw',
     name: 'Module Design Pattern - Beau teaches JavaScript',
-    url: 'https://youtube.com/watch?v=3pXVHRT-amw' },
+    url: 'https://youtube.com/watch?v=3pXVHRT-amw',
+    duration: 164 },
   { id: 'KOVc5o5kURE',
     name: 'Mediator Design Pattern - Beau teaches JavaScript',
-    url: 'https://youtube.com/watch?v=KOVc5o5kURE' } ]
+    url: 'https://youtube.com/watch?v=KOVc5o5kURE',
+    duration: 309 } ]
    */
 });
 ```
@@ -116,8 +129,9 @@ ytlist(url, opts)
 - __`id`__ `:` `returns only ids of all the videos present in a playlist`
 - __`url`__ `:` `returns only urls of all the videos present in a playlist`
 - __`name`__ `:` `return only name of the videos present in a playlist`
+- __`duration`__ `:` `return only duration (in seconds) of the videos present in a playlist`
 
-- Passing `opts` either as __`url`__ or an array of options __`['id', 'name', 'url']`__ returns all the details.
+- Passing `opts` either as __`url`__ or an array of options __`['id', 'name', 'url', 'duration']`__ returns all the details.
 
 __Type of__
 
