@@ -117,9 +117,9 @@ ytlist(url, ['id', 'name', 'url']).then(res => {
     isPrivate: false } ]
    */
 });
-
-**Notice** in `multiple details` - another prop will be added. `isPrivate` will be true when the video is private (for not loggedin user)
 ```
+
+__Notice__: In `multiple details` - another prop will be added. `isPrivate` will be true when the video is private (for not loggedin user).
 
 ## API
 
