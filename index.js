@@ -25,6 +25,7 @@ module.exports = (data, opt) => {
 		const $ = cheerio.load(res.body);
 		const thumb = $('tr');
 		const arr = {
+			name: $('.pl-header-title').text().trim(),
 			playlist: []
 		};
 

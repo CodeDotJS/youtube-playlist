@@ -6,6 +6,7 @@ const urlWithPrivateVideos = 'https://www.youtube.com/playlist?list=PLtKALR6MChB
 const base = 'https://youtube.com/watch?v=';
 
 const mock = {
+	playlistName: 'Design Patterns - Beau teaches JavaScript',
 	ids: [
 		'bgU7FeiWKzc',
 		'3PUVr8jFMGg',
@@ -76,4 +77,9 @@ test('getAllDetailsByDefault', async t => {
 test('return isPrivate', async t => {
 	const videos = await m(urlWithPrivateVideos);
 	t.deepEqual(videos.data.playlist.map(video => video.isPrivate), [true, false, true]);
+});
+
+test('playlist name', async t => {
+	const videos = await m(url);
+	t.is(videos.data.name, mock.playlistName);
 });
