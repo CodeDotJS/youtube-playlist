@@ -18,6 +18,12 @@ const mock = {
 		`Observer Design Pattern - Beau teaches JavaScript`,
 		`Module Design Pattern - Beau teaches JavaScript`,
 		`Mediator Design Pattern - Beau teaches JavaScript`
+	],
+	durations: [
+		(4 * 60) + 51,
+		(3 * 60) + 57,
+		(2 * 60) + 44,
+		(5 * 60) + 9
 	]
 };
 
@@ -42,12 +48,20 @@ test('getNames', async t => {
 	});
 });
 
+test('getDurations', async t => {
+	const durations = await m(url, 'duration');
+	durations.data.playlist.forEach((duration, i) => {
+		t.is(duration, mock.durations[i]);
+	});
+});
+
 test('getAllDetails', async t => {
-	const videos = await m(url, ['name', 'id', 'url']);
+	const videos = await m(url, ['name', 'id', 'url', 'duration']);
 	videos.data.playlist.forEach((video, i) => {
 		t.is(video.name, mock.names[i]);
 		t.is(video.id, mock.ids[i]);
 		t.is(video.url, `${base}${mock.ids[i]}`);
+		t.is(video.duration, mock.durations[i]);
 	});
 });
 

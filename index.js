@@ -34,21 +34,30 @@ module.exports = (data, opt) => {
 		}
 
 		const prefixUrl = (holder, marks) => holder === 'url' ? `${url}${marks}` : marks;
+		const getDuration = el => {
+			const raw = $(el).find('.timestamp').text().split(':');
+			return (parseInt(raw[0], 10) * 60) + parseInt(raw[1], 10);
+		};
 
 		const multipleDetails = Array.isArray(opt);
 
 		arr.playlist = thumb.map((index, el) => {
 			if (multipleDetails) {
 				return opt.reduce((prev, holder) => {
-					prev[holder] = prefixUrl(holder, el.attribs[tag[holder]]);
+					prev[holder] = prefixUrl(holder, holder === 'duration' ? getDuration(el) : el.attribs[tag[holder]]);
 					return prev;
 				}, {
 					isPrivate: isPrivateVideo(el)
 				});
 			}
+			if (opt === 'duration') {
+				return getDuration(el);
+			}
 			return prefixUrl(opt, el.attribs[tag[opt]]);
 		}).get();
 
-		return {data: arr};
+		return {
+			data: arr
+		};
 	});
 };
