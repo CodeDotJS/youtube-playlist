@@ -1,6 +1,6 @@
 {
   "name": "youtube-playlist",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Extract links, ids, and names from a youtube playlist",
   "license": "MIT",
   "repository": {
